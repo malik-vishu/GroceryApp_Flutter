@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,12 +9,103 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF8E2AEB),
+      backgroundColor: MyThemes.purple,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Color(0xFFD8DB27), size: 32),
-        title: SearchBarWidget(),
-        backgroundColor: const Color(0xFF8E2AEB),
+        iconTheme: IconThemeData(color: MyThemes.lightYellow, size: 32),
+        title: const SearchBarWidget(),
+        backgroundColor: MyThemes.purple,
         elevation: 0.0,
+      ),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Card(
+                  color: MyThemes.lightYellow,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  elevation: 2.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                      width: 135,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 224, 243, 191),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.fromLTRB(8, 6.5, 8, 5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Placeholder(
+                            fallbackHeight: 60,
+                            fallbackWidth: 50,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          "Text".text.purple700.xl2.semiBold.make(),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                width: 30,
+                                height: 30,
+                                margin: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlue,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: IconButton(
+                                    style: ButtonStyle(
+                                        elevation: MaterialStatePropertyAll(3)),
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.remove,
+                                      size: 25,
+                                      color: Vx.purple700,
+                                    )),
+                              ),
+                              "1".text.purple700.xl.make(),
+                              Container(
+                                alignment: Alignment.center,
+                                width: 30,
+                                height: 30,
+                                margin: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlue,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: IconButton(
+                                    style: ButtonStyle(
+                                        elevation: MaterialStatePropertyAll(3)),
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.add,
+                                      size: 25,
+                                      color: Vx.purple700,
+                                    )),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
       ),
       drawer: const DrawerWidget(),
     );
@@ -28,18 +120,18 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color(0xFF8E2AEB),
+      backgroundColor: MyThemes.purple,
       child: ListView(padding: EdgeInsets.zero, children: [
         DrawerHeader(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 border: BorderDirectional(
-              bottom: BorderSide(color: Color(0xFFD8DB27), width: 1),
+              bottom: BorderSide(color: MyThemes.lightYellow, width: 1),
             )),
             margin: const EdgeInsets.all(0),
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(
-                color: Color(0xFF8E2AEB),
+              decoration: BoxDecoration(
+                color: MyThemes.purple,
               ),
               margin: EdgeInsets.zero,
               accountName: "Vishu"
@@ -55,7 +147,7 @@ class DrawerWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0xFFD8DB27)),
+                  border: Border.all(color: MyThemes.lightYellow),
                   //borderRadius: BorderRadius.circular(30)
                 ),
                 child: const CircleAvatar(
@@ -102,20 +194,19 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           setState(() {});
         },
         controller: _searchController,
-        textStyle: const MaterialStatePropertyAll(
-            TextStyle(color: Color(0xFFD8DB27), fontSize: 18)),
+        textStyle: MaterialStatePropertyAll(
+            TextStyle(color: MyThemes.lightYellow, fontSize: 18)),
         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
             side: BorderSide.none, borderRadius: BorderRadius.circular(6))),
         elevation: const MaterialStatePropertyAll(1),
-        backgroundColor:
-            const MaterialStatePropertyAll(Color.fromARGB(255, 152, 64, 234)),
-        leading: const Icon(
+        backgroundColor: MaterialStatePropertyAll(MyThemes.searchBarColor),
+        leading: Icon(
           Icons.search,
-          color: Color(0xFFD8DB27),
+          color: MyThemes.lightYellow,
         ),
         hintText: "Search",
         hintStyle:
-            const MaterialStatePropertyAll(TextStyle(color: Color(0xFFD8DB27))),
+            MaterialStatePropertyAll(TextStyle(color: MyThemes.lightYellow)),
         trailing: [
           clicked
               ? IconButton(
@@ -146,14 +237,14 @@ class ListTileWidget extends StatelessWidget {
         ListTile(
             leading: Icon(
               leadingIcon,
-              color: const Color(0xFFD8DB27),
+              color: MyThemes.lightYellow,
               size: 34.0,
             ),
             title: title.text.hexColor("FFD8DB27").lg.make()),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
           child: Divider(
-            color: Color(0xFFD8DB27),
+            color: MyThemes.lightYellow,
             thickness: 0.6,
           ),
         )

@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                       width: 135,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 224, 243, 191),
+                        color: MyThemes.cardColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       alignment: Alignment.center,

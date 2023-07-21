@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: const Color(0xFF8E2AEB),
+        color: MyThemes.purple,
         child: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,13 +21,15 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(
-                          width: 3.5, color: const Color(0xFFD8DB27))),
+                      border:
+                          Border.all(width: 3.5, color: MyThemes.lightYellow)),
                   child: Column(
                     children: [
                       "WELCOME!!"
                           .text
-                          .color(const Color(0xFFD8DB27))
+                          .color(MyThemes.lightYellow)
+                          .fontFamily(MyThemes.headingFonts)
+                          .widest
                           .xl4
                           .make(),
                       const SizedBox(
@@ -56,7 +59,11 @@ class LoginScreen extends StatelessWidget {
                               side: const BorderSide(
                                   width: 1.0, color: Color(0xFFD8DB27))),
                           onPressed: () {},
-                          child: "Login".text.hexColor("FFD8DB27").make())
+                          child: "Login"
+                              .text
+                              .fontFamily(MyThemes.headingFonts)
+                              .hexColor("FFD8DB27")
+                              .make())
                     ],
                   ),
                 ),
@@ -84,21 +91,21 @@ class FormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: const Color(0xFFD8DB27),
+      cursorColor: MyThemes.lightYellow,
       obscureText: true,
       decoration: InputDecoration(
           icon: Icon(
             leadingIcon,
-            color: const Color(0xFFD8DB27),
+            color: MyThemes.lightYellow,
             size: 40,
           ),
-          hintStyle: const TextStyle(color: Color(0xFFD8DB27)),
-          labelStyle: const TextStyle(color: Color(0xFFD8DB27)),
+          hintStyle: const TextStyle(color: MyThemes.lightYellow),
+          labelStyle: const TextStyle(color: MyThemes.lightYellow),
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFD8DB27)),
+            borderSide: BorderSide(color: MyThemes.lightYellow),
           ),
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFD8DB27)),
+            borderSide: BorderSide(color: MyThemes.lightYellow),
           ),
           hintText: hintText,
           labelText: labelText),

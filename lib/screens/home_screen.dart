@@ -11,104 +11,165 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyThemes.purple,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: MyThemes.lightYellow, size: 32),
+        iconTheme: const IconThemeData(color: MyThemes.lightYellow, size: 32),
         title: const SearchBarWidget(),
         backgroundColor: MyThemes.purple,
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Card(
-                  color: MyThemes.lightYellow,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  elevation: 2.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: 135,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: MyThemes.cardColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.fromLTRB(8, 6.5, 8, 5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Placeholder(
-                            fallbackHeight: 60,
-                            fallbackWidth: 50,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          "Text".text.purple700.xl2.semiBold.make(),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: 30,
-                                height: 30,
-                                margin: EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                    color: Colors.lightBlue,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: IconButton(
-                                    style: ButtonStyle(
-                                        elevation: MaterialStatePropertyAll(3)),
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.remove,
-                                      size: 25,
-                                      color: Vx.purple700,
-                                    )),
-                              ),
-                              "1".text.purple700.xl.make(),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 30,
-                                height: 30,
-                                margin: EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                    color: Colors.lightBlue,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: IconButton(
-                                    style: ButtonStyle(
-                                        elevation: MaterialStatePropertyAll(3)),
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.add,
-                                      size: 25,
-                                      color: Vx.purple700,
-                                    )),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          )
-        ],
+      body: VxScrollVertical(
+        child: <Widget>[
+          "Fruits"
+              .text
+              .fontFamily(MyThemes.headingFonts)
+              .xl3
+              .color(MyThemes.headingBlueColor)
+              .make()
+              .py16(),
+          const RowOnHomeScreen(),
+          "Vegetables"
+              .text
+              .fontFamily(MyThemes.headingFonts)
+              .xl3
+              .color(MyThemes.headingBlueColor)
+              .make()
+              .py16(),
+          const RowOnHomeScreen(),
+          "Dairy"
+              .text
+              .fontFamily(MyThemes.headingFonts)
+              .xl3
+              .color(MyThemes.headingBlueColor)
+              .make()
+              .py16(),
+          const RowOnHomeScreen(),
+        ].vStack(),
       ),
       drawer: const DrawerWidget(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButton: FloatingActionButton(
+          elevation: 3,
+          onPressed: () {},
+          backgroundColor: MyThemes.cardButtonColor,
+          child: const Icon(
+            CupertinoIcons.cart,
+          )),
     );
+  }
+}
+
+class RowOnHomeScreen extends StatelessWidget {
+  const RowOnHomeScreen({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return const CardWidgetHomeScreen();
+        },
+      ),
+    );
+  }
+}
+
+class CardWidgetHomeScreen extends StatelessWidget {
+  const CardWidgetHomeScreen({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 2, 0),
+        child: Card(
+          color: MyThemes.lightYellow,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 2.0,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Container(
+              width: 140,
+              height: 200,
+              decoration: BoxDecoration(
+                color: MyThemes.cardColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(8, 6.5, 8, 5),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/Milk.png"),
+                    width: 70,
+                    height: 70,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  "Text".text.purple700.xl2.semiBold.make(),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        width: 30,
+                        height: 30,
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: MyThemes.cardButtonColor,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                elevation: MaterialStatePropertyAll(3)),
+                            padding: EdgeInsets.zero,
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.remove,
+                              size: 25,
+                              color: MyThemes.cardIconColor,
+                            )),
+                      ),
+                      "1".text.color(MyThemes.purple).semiBold.xl2.make(),
+                      Container(
+                        alignment: Alignment.center,
+                        width: 30,
+                        height: 30,
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: MyThemes.cardButtonColor,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                elevation: MaterialStatePropertyAll(3)),
+                            padding: EdgeInsets.zero,
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.add,
+                              size: 25,
+                              color: MyThemes.cardIconColor,
+                            )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }
 
@@ -123,14 +184,14 @@ class DrawerWidget extends StatelessWidget {
       backgroundColor: MyThemes.purple,
       child: ListView(padding: EdgeInsets.zero, children: [
         DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 border: BorderDirectional(
               bottom: BorderSide(color: MyThemes.lightYellow, width: 1),
             )),
             margin: const EdgeInsets.all(0),
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: MyThemes.purple,
               ),
               margin: EdgeInsets.zero,
@@ -166,6 +227,10 @@ class DrawerWidget extends StatelessWidget {
           title: "Transaction History",
           leadingIcon: Icons.history,
         ),
+        ListTileWidget(
+          title: "About",
+          leadingIcon: Icons.person_pin_outlined,
+        ),
       ]),
     );
   }
@@ -194,19 +259,21 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           setState(() {});
         },
         controller: _searchController,
-        textStyle: MaterialStatePropertyAll(
+        constraints: const BoxConstraints(maxWidth: 260, minWidth: 140),
+        textStyle: const MaterialStatePropertyAll(
             TextStyle(color: MyThemes.lightYellow, fontSize: 18)),
         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
             side: BorderSide.none, borderRadius: BorderRadius.circular(6))),
         elevation: const MaterialStatePropertyAll(1),
-        backgroundColor: MaterialStatePropertyAll(MyThemes.searchBarColor),
-        leading: Icon(
+        backgroundColor:
+            const MaterialStatePropertyAll(MyThemes.searchBarColor),
+        leading: const Icon(
           Icons.search,
           color: MyThemes.lightYellow,
         ),
         hintText: "Search",
-        hintStyle:
-            MaterialStatePropertyAll(TextStyle(color: MyThemes.lightYellow)),
+        hintStyle: const MaterialStatePropertyAll(
+            TextStyle(color: MyThemes.lightYellow)),
         trailing: [
           clicked
               ? IconButton(
@@ -240,9 +307,13 @@ class ListTileWidget extends StatelessWidget {
               color: MyThemes.lightYellow,
               size: 34.0,
             ),
-            title: title.text.hexColor("FFD8DB27").lg.make()),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+            title: title.text
+                .hexColor(MyThemes.lightYellowHex)
+                .fontFamily(MyThemes.headingFonts)
+                .lg
+                .make()),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
           child: Divider(
             color: MyThemes.lightYellow,
             thickness: 0.6,

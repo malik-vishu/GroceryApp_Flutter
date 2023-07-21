@@ -6,4 +6,8 @@ class MyThemes {
   static const Color purple = Color(0xFF8E2AEB);
   static const Color searchBarColor = Color.fromARGB(255, 152, 64, 234);
   static const Color cardColor = Color.fromARGB(255, 224, 243, 191);
+  static const Color cardButtonColor = Color.fromARGB(255, 69, 227, 242);
+  static const Color cardIconColor = Colors.black;
+  static const String headingFonts = "Pacifico";
+  static const Color headingBlueColor = Color.fromARGB(255, 48, 209, 249);
 }

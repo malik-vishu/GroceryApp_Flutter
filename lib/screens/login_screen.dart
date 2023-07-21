@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/utils/all_routes.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Material(
         color: MyThemes.purple,
         child: Form(
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -36,10 +39,10 @@ class LoginScreen extends StatelessWidget {
                         height: 20,
                       ),
                       FormField(
-                        leadingIcon: Icons.account_box_outlined,
-                        hintText: "Enter Username",
-                        labelText: "Username",
-                      ),
+                          leadingIcon: Icons.account_box_outlined,
+                          hintText: "Enter Username",
+                          labelText: "Username",
+                          formKey: formKey),
                       const SizedBox(
                         height: 10,
                       ),
@@ -48,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                         hintText: "Enter Password",
                         labelText: "Password",
                         obscureText: true,
+                        formKey: formKey,
                       ),
                       const SizedBox(
                         height: 25,
@@ -58,7 +62,13 @@ class LoginScreen extends StatelessWidget {
                               maximumSize: const Size(120, 60),
                               side: const BorderSide(
                                   width: 1.0, color: Color(0xFFD8DB27))),
-                          onPressed: () {},
+                          onPressed: () {
+                            if (formKey.currentState != null &&
+                                formKey.currentState!.validate()) {
+                              print("Home");
+                              Navigator.pushNamed(context, AllRoutes.home);
+                            }
+                          },
                           child: "Login"
                               .text
                               .fontFamily(MyThemes.headingFonts)
@@ -81,6 +91,7 @@ class FormField extends StatelessWidget {
     required this.hintText,
     required this.labelText,
     this.obscureText,
+    required GlobalKey<FormState> formKey,
   }) : super(key: key);
 
   final IconData leadingIcon;
@@ -93,22 +104,43 @@ class FormField extends StatelessWidget {
     return TextFormField(
       cursorColor: MyThemes.lightYellow,
       obscureText: true,
+      validator: (value) {
+        if (labelText == "Password") {
+          if (value != null && value.isEmpty) {
+            return "Password cannot be empty";
+          } else if (value != null && value.length < 6) {
+            return "Length should be atleast 6";
+          }
+          return null;
+        } else {
+          if (value != null && value.isEmpty) {
+            return "Username cannot be empty";
+          }
+          return null;
+        }
+      },
       decoration: InputDecoration(
-          icon: Icon(
-            leadingIcon,
-            color: MyThemes.lightYellow,
-            size: 40,
-          ),
-          hintStyle: const TextStyle(color: MyThemes.lightYellow),
-          labelStyle: const TextStyle(color: MyThemes.lightYellow),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: MyThemes.lightYellow),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: MyThemes.lightYellow),
-          ),
-          hintText: hintText,
-          labelText: labelText),
+        focusedErrorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: MyThemes.headingBlueColor)),
+        errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: MyThemes.headingBlueColor)),
+        errorStyle: const TextStyle(color: MyThemes.headingBlueColor),
+        icon: Icon(
+          leadingIcon,
+          color: MyThemes.lightYellow,
+          size: 40,
+        ),
+        hintStyle: const TextStyle(color: MyThemes.lightYellow),
+        labelStyle: const TextStyle(color: MyThemes.lightYellow),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: MyThemes.lightYellow),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: MyThemes.lightYellow),
+        ),
+        hintText: hintText,
+        labelText: labelText,
+      ),
     );
   }
 }

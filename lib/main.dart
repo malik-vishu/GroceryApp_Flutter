@@ -16,11 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      // darkTheme: ThemeData(fontFamily: GoogleFonts.pacifico().fontFamily),
-      initialRoute: AllRoutes.home,
+      initialRoute: AllRoutes.login,
       routes: {
-        '/': (context) => LoginScreen(),
-        AllRoutes.home: (_) => HomeScreen(),
+        AllRoutes.login: (context) => LoginScreen(),
+        AllRoutes.home: (context) => HomeScreen(),
       },
     );
   }

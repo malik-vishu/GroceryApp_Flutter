@@ -195,7 +195,7 @@ class DrawerWidget extends StatelessWidget {
                 color: MyThemes.purple,
               ),
               margin: EdgeInsets.zero,
-              accountName: "Vishu"
+              accountName: "John"
                   .text
                   .lineHeight(3.5)
                   .xl2
@@ -203,7 +203,7 @@ class DrawerWidget extends StatelessWidget {
                   .hexColor("FFD8DB27")
                   .make(),
               accountEmail:
-                  "vishuxx@gmail.com".text.lg.hexColor("FFD8DB27").make(),
+                  "johnxx@gmail.com".text.lg.hexColor("FFD8DB27").make(),
               currentAccountPicture: Container(
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
@@ -219,7 +219,7 @@ class DrawerWidget extends StatelessWidget {
             )),
         ListTileWidget(title: "Home", leadingIcon: Icons.home_outlined),
         ListTileWidget(
-            title: "vishuxxx@gmail.com",
+            title: "johnxxx@gmail.com",
             leadingIcon: Icons.mail_outline_rounded),
         ListTileWidget(
             title: "Wallet", leadingIcon: Icons.currency_rupee_sharp),

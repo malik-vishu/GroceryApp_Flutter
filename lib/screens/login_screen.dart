@@ -124,14 +124,18 @@ class FormField extends StatelessWidget {
             borderSide: BorderSide(color: MyThemes.headingBlueColor)),
         errorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: MyThemes.headingBlueColor)),
-        errorStyle: const TextStyle(color: MyThemes.headingBlueColor),
+        errorStyle: const TextStyle(
+            color: MyThemes.headingBlueColor,
+            fontFamily: MyThemes.headingFonts),
         icon: Icon(
           leadingIcon,
           color: MyThemes.lightYellow,
           size: 40,
         ),
-        hintStyle: const TextStyle(color: MyThemes.lightYellow),
-        labelStyle: const TextStyle(color: MyThemes.lightYellow),
+        hintStyle: const TextStyle(
+            color: MyThemes.lightYellow, fontFamily: MyThemes.headingFonts),
+        labelStyle: const TextStyle(
+            color: MyThemes.lightYellow, fontFamily: MyThemes.headingFonts),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: MyThemes.lightYellow),
         ),

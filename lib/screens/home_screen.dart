@@ -197,13 +197,18 @@ class DrawerWidget extends StatelessWidget {
               margin: EdgeInsets.zero,
               accountName: "John"
                   .text
-                  .lineHeight(3.5)
-                  .xl2
-                  .bold
+                  .lineHeight(2.9)
+                  .xl3
+                  .extraBold
+                  .fontFamily(MyThemes.headingFonts)
                   .hexColor("FFD8DB27")
                   .make(),
-              accountEmail:
-                  "johnxx@gmail.com".text.lg.hexColor("FFD8DB27").make(),
+              accountEmail: "johnxx@gmail.com"
+                  .text
+                  .fontFamily(MyThemes.headingFonts)
+                  .xl
+                  .hexColor("FFD8DB27")
+                  .make(),
               currentAccountPicture: Container(
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_app/screens/profile_screen.dart';
-import 'package:grocery_app/screens/search_screen.dart';
-import 'package:grocery_app/widgets/bottom_nav_bar.dart';
+
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../widgets/navig.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -14,54 +14,62 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<bool> _onWillPop() async {
+    return await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const NavigationWidget()));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MyThemes.purple,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        iconTheme:
-            const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
-        title: "ShadowBox".text.xl4.color(MyThemes.headingBlueColor).make(),
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
         backgroundColor: MyThemes.purple,
-        elevation: 0.0,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          iconTheme:
+              const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
+          title: "ShadowBox".text.xl4.color(MyThemes.headingBlueColor).make(),
+          backgroundColor: MyThemes.purple,
+          elevation: 0.0,
+        ),
+        body: VxScrollVertical(
+          child: <Widget>[
+            "Fruits"
+                .text
+                .fontFamily(MyThemes.headingFonts)
+                .xl3
+                .color(MyThemes.headingBlueColor)
+                .make()
+                .py16(),
+            const RowOnHomeScreen(),
+            "Vegetables"
+                .text
+                .fontFamily(MyThemes.headingFonts)
+                .xl3
+                .color(MyThemes.headingBlueColor)
+                .make()
+                .py16(),
+            const RowOnHomeScreen(),
+            "Dairy"
+                .text
+                .fontFamily(MyThemes.headingFonts)
+                .xl3
+                .color(MyThemes.headingBlueColor)
+                .make()
+                .py16(),
+            const RowOnHomeScreen(),
+          ].vStack(),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButton: FloatingActionButton(
+            elevation: 3,
+            onPressed: () {},
+            backgroundColor: MyThemes.cardButtonColor,
+            child: const Icon(
+              CupertinoIcons.cart,
+            )),
       ),
-      body: VxScrollVertical(
-        child: <Widget>[
-          "Fruits"
-              .text
-              .fontFamily(MyThemes.headingFonts)
-              .xl3
-              .color(MyThemes.headingBlueColor)
-              .make()
-              .py16(),
-          const RowOnHomeScreen(),
-          "Vegetables"
-              .text
-              .fontFamily(MyThemes.headingFonts)
-              .xl3
-              .color(MyThemes.headingBlueColor)
-              .make()
-              .py16(),
-          const RowOnHomeScreen(),
-          "Dairy"
-              .text
-              .fontFamily(MyThemes.headingFonts)
-              .xl3
-              .color(MyThemes.headingBlueColor)
-              .make()
-              .py16(),
-          const RowOnHomeScreen(),
-        ].vStack(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      floatingActionButton: FloatingActionButton(
-          elevation: 3,
-          onPressed: () {},
-          backgroundColor: MyThemes.cardButtonColor,
-          child: const Icon(
-            CupertinoIcons.cart,
-          )),
     );
   }
 }

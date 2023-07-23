@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/screens/home_screen.dart';
 import 'package:grocery_app/utils/all_routes.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_app/widgets/navig.dart';
 import 'screens/login_screen.dart';
 
 void main() {
@@ -15,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Pangolin'),
       initialRoute: AllRoutes.login,
       routes: {
         AllRoutes.login: (context) => LoginScreen(),
-        AllRoutes.home: (context) => HomeScreen(),
+        AllRoutes.nav: (context) => const NavigationWidget(),
       },
     );
   }

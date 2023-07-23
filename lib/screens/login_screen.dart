@@ -65,8 +65,8 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             if (formKey.currentState != null &&
                                 formKey.currentState!.validate()) {
-                              print("Home");
-                              Navigator.pushNamed(context, AllRoutes.home);
+                              print("Login Done");
+                              Navigator.pushNamed(context, AllRoutes.nav);
                             }
                           },
                           child: "Login"
@@ -102,6 +102,7 @@ class FormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: MyThemes.lightYellow),
       cursorColor: MyThemes.lightYellow,
       obscureText: true,
       validator: (value) {

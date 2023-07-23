@@ -1,21 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/screens/profile_screen.dart';
+import 'package:grocery_app/screens/search_screen.dart';
+import 'package:grocery_app/widgets/bottom_nav_bar.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyThemes.purple,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: MyThemes.lightYellow, size: 32),
-        title: const SearchBarWidget(),
+        iconTheme:
+            const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
+        // title: const SearchBarWidget(),
+        title: "ShadowBox".text.xl4.color(MyThemes.headingBlueColor).make(),
         backgroundColor: MyThemes.purple,
         elevation: 0.0,
       ),
+      // bottomNavigationBar: BottomBarNav(selectedIndex: selectedIndex,allpages: allpages,onTabChange: _tabChanged,),
       body: VxScrollVertical(
         child: <Widget>[
           "Fruits"
@@ -65,7 +78,7 @@ class RowOnHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 220,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,
@@ -95,7 +108,7 @@ class CardWidgetHomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: Container(
               width: 140,
-              height: 200,
+              // height: 200,
               decoration: BoxDecoration(
                 color: MyThemes.cardColor,
                 borderRadius: BorderRadius.circular(10),
@@ -119,6 +132,16 @@ class CardWidgetHomeScreen extends StatelessWidget {
                   "Text".text.purple700.xl2.semiBold.make(),
                   const SizedBox(
                     height: 6,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.currency_rupee_rounded,
+                        color: MyThemes.purple,
+                      ),
+                      "10.00".text.xl2.bold.color(MyThemes.purple).make()
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -14,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -264,58 +262,6 @@ class DrawerWidget extends StatelessWidget {
   }
 }
 
-class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key});
-
-  @override
-  State<SearchBarWidget> createState() => _SearchBarWidgetState();
-}
-
-class _SearchBarWidgetState extends State<SearchBarWidget> {
-  bool clicked = false;
-  final TextEditingController _searchController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return SearchBar(
-        onChanged: (value) {
-          if (value.isNotEmpty) {
-            clicked = true;
-          }
-          if (value.isEmptyOrNull) {
-            clicked = false;
-          }
-          setState(() {});
-        },
-        controller: _searchController,
-        constraints: const BoxConstraints(maxWidth: 260, minWidth: 140),
-        textStyle: const MaterialStatePropertyAll(
-            TextStyle(color: MyThemes.lightYellow, fontSize: 18)),
-        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-            side: BorderSide.none, borderRadius: BorderRadius.circular(6))),
-        elevation: const MaterialStatePropertyAll(1),
-        backgroundColor:
-            const MaterialStatePropertyAll(MyThemes.searchBarColor),
-        leading: const Icon(
-          Icons.search,
-          color: MyThemes.lightYellow,
-        ),
-        hintText: "Search",
-        hintStyle: const MaterialStatePropertyAll(
-            TextStyle(color: MyThemes.lightYellow)),
-        trailing: [
-          clicked
-              ? IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    _searchController.clear();
-                    clicked = false;
-                    setState(() {});
-                  },
-                )
-              : Container(),
-        ]);
-  }
-}
 
 class ListTileWidget extends StatelessWidget {
   ListTileWidget({

@@ -4,4 +4,5 @@ class AllRoutes {
   static String nav = "/nav";
   static String search = "/search";
   static String profile = "/profile";
+  static String wallet = "/wallet";
 }

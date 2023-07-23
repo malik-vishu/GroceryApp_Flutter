@@ -19,14 +19,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: MyThemes.purple,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         iconTheme:
             const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
-        // title: const SearchBarWidget(),
         title: "ShadowBox".text.xl4.color(MyThemes.headingBlueColor).make(),
         backgroundColor: MyThemes.purple,
         elevation: 0.0,
       ),
-      // bottomNavigationBar: BottomBarNav(selectedIndex: selectedIndex,allpages: allpages,onTabChange: _tabChanged,),
       body: VxScrollVertical(
         child: <Widget>[
           "Fruits"
@@ -55,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
           const RowOnHomeScreen(),
         ].vStack(),
       ),
-      drawer: const DrawerWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: FloatingActionButton(
           elevation: 3,
@@ -261,7 +259,6 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 }
-
 
 class ListTileWidget extends StatelessWidget {
   ListTileWidget({

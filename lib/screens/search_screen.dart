@@ -1,36 +1,75 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:grocery_app/widgets/navig.dart';
 import 'package:grocery_app/widgets/searchbar.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:chip_list/chip_list.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   SearchScreen({super.key});
 
   @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  Future<bool> _onWillPop() async {
+    return await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const NavigationWidget()));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const SearchBarWidget(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: MyThemes.lightYellow),
-      ),
-      backgroundColor: MyThemes.purple,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(
-              CupertinoIcons.clock,
-              color: MyThemes.lightYellow,
-            ).px8(),
-            "History".text.color(MyThemes.lightYellow).size(20).semiBold.make(),
-          ]).py16(),
-          ChipListWidget().p16(),
-        ],
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const SearchBarWidget(),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: MyThemes.lightYellow),
+        ),
+        backgroundColor: MyThemes.purple,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(
+                CupertinoIcons.clock,
+                color: MyThemes.lightYellow,
+              ).px8(),
+              "History"
+                  .text
+                  .color(MyThemes.lightYellow)
+                  .size(20)
+                  .semiBold
+                  .make(),
+            ]).pSymmetric(v: 12),
+            ChipListWidget().p16(),
+            InkWell(
+              onTap: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  "Clear"
+                      .text
+                      .xl
+                      .color(MyThemes.lightYellow)
+                      .make()
+                      .pLTRB(0, 3, 4, 2),
+                  const Icon(
+                    CupertinoIcons.clear_circled,
+                    color: MyThemes.lightYellow,
+                    size: 22,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -57,8 +96,8 @@ class _ChipListWidgetState extends State<ChipListWidget> {
   @override
   Widget build(BuildContext context) {
     return ChipList(
-      style: TextStyle(fontSize: 18),
-      padding: EdgeInsets.all(5),
+      style: const TextStyle(fontSize: 18),
+      padding: const EdgeInsets.all(5),
       widgetSpacing: 5,
       listOfChipNames: _historyList,
       activeBgColorList: [MyThemes.searchBarColor],

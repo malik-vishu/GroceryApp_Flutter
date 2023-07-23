@@ -14,71 +14,77 @@ class LoginScreen extends StatelessWidget {
         color: MyThemes.purple,
         child: Form(
           key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border:
-                          Border.all(width: 3.5, color: MyThemes.lightYellow)),
-                  child: Column(
-                    children: [
-                      "WELCOME!!"
-                          .text
-                          .color(MyThemes.lightYellow)
-                          .fontFamily(MyThemes.headingFonts)
-                          .widest
-                          .xl4
-                          .make(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      FormField(
-                          leadingIcon: Icons.account_box_outlined,
-                          hintText: "Enter Username",
-                          labelText: "Username",
-                          formKey: formKey),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      FormField(
-                        leadingIcon: CupertinoIcons.eye,
-                        hintText: "Enter Password",
-                        labelText: "Password",
-                        obscureText: true,
-                        formKey: formKey,
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                              minimumSize: const Size(100, 40),
-                              maximumSize: const Size(120, 60),
-                              side: const BorderSide(
-                                  width: 1.0, color: Color(0xFFD8DB27))),
-                          onPressed: () {
-                            if (formKey.currentState != null &&
-                                formKey.currentState!.validate()) {
-                              print("Login Done");
-                              Navigator.pushNamed(context, AllRoutes.nav);
-                            }
-                          },
-                          child: "Login"
-                              .text
-                              .fontFamily(MyThemes.headingFonts)
-                              .hexColor("FFD8DB27")
-                              .make())
-                    ],
+          child: Card(
+            elevation: 2.5,
+            color: Color.fromARGB(255, 108, 6, 203),
+            margin: EdgeInsets.fromLTRB(28, 280, 28, 260),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                        border: Border.all(
+                            width: 3.5, color: MyThemes.lightYellow)),
+                    child: Column(
+                      children: [
+                        "WELCOME!!"
+                            .text
+                            .color(MyThemes.lightYellow)
+                            .fontFamily(MyThemes.headingFonts)
+                            .widest
+                            .xl4
+                            .make(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        FormField(
+                            leadingIcon: Icons.account_box_outlined,
+                            hintText: "Enter Username",
+                            labelText: "Username",
+                            formKey: formKey),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        FormField(
+                          leadingIcon: CupertinoIcons.eye,
+                          hintText: "Enter Password",
+                          labelText: "Password",
+                          obscureText: true,
+                          formKey: formKey,
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                                minimumSize: const Size(100, 40),
+                                maximumSize: const Size(120, 60),
+                                side: const BorderSide(
+                                    width: 1.0, color: Color(0xFFD8DB27))),
+                            onPressed: () {
+                              if (formKey.currentState != null &&
+                                  formKey.currentState!.validate()) {
+                                print("Login Done");
+                                Navigator.pushNamed(context, AllRoutes.nav);
+                              }
+                            },
+                            child: "Login"
+                                .text
+                                .fontFamily(MyThemes.headingFonts)
+                                .hexColor("FFD8DB27")
+                                .make())
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }

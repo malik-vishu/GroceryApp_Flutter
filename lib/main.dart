@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/home_screen.dart';
 import 'package:grocery_app/screens/profile_screen.dart';
 import 'package:grocery_app/screens/search_screen.dart';
+import 'package:grocery_app/screens/splash_screen.dart';
 import 'package:grocery_app/screens/wallet_screen.dart';
 import 'package:grocery_app/utils/all_routes.dart';
 import 'package:grocery_app/widgets/navig.dart';
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Pangolin'),
-      initialRoute: AllRoutes.nav,
+      initialRoute: '/',
       routes: {
+        '/': (context) => SplashScreen(),
         AllRoutes.login: (context) => LoginScreen(),
         AllRoutes.home: (context) => HomeScreen(),
         AllRoutes.profile: (context) => ProfileScreen(),

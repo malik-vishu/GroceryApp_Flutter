@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:grocery_app/widgets/themes.dart';
 
 class BottomBarNav extends StatelessWidget {
   BottomBarNav(
@@ -22,7 +23,7 @@ class BottomBarNav extends StatelessWidget {
       duration: const Duration(milliseconds: 800),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: MyThemes.searchBarColor,
           boxShadow: [
             BoxShadow(
               spreadRadius: -10,
@@ -36,13 +37,14 @@ class BottomBarNav extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 22),
           child: GNav(
             gap: 6,
-            color: Colors.grey[600],
-            activeColor: Colors.white,
+            color: MyThemes.lightYellow,
+            activeColor: MyThemes.headingBlueColor,
             rippleColor: Colors.grey[800]!,
-            hoverColor: Colors.grey[700]!,
+            hoverColor: const Color.fromARGB(255, 155, 74, 231),
             iconSize: 25,
-            textStyle: const TextStyle(fontSize: 16, color: Colors.white),
-            tabBackgroundColor: Colors.grey[900]!,
+            textStyle:
+                const TextStyle(fontSize: 16, color: MyThemes.headingBlueColor),
+            tabBackgroundColor: Color.fromARGB(255, 60, 59, 61),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16.5),
             duration: const Duration(milliseconds: 750),
             tabs: const [

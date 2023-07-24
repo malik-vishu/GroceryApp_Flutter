@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Pangolin'),
-      initialRoute: AllRoutes.nav,
+      initialRoute: AllRoutes.splash,
       routes: {
         AllRoutes.splash: (context) => SplashScreen(),
         AllRoutes.login: (context) => LoginScreen(),

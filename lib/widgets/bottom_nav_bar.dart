@@ -4,12 +4,12 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomBarNav extends StatelessWidget {
   BottomBarNav(
-      {Key? key, required this.selectedIndex, this.allpages, this.onTabChange})
+      {Key? key, required this.selectedIndex, required this.allpages, required this.onTabChange})
       : super(key: key);
 
   int selectedIndex;
-  List<Widget>? allpages;
-  final ValueChanged<int>? onTabChange;
+  final List<Widget> allpages;
+  final ValueChanged<int> onTabChange;
 
   List<GButton> tabs = [];
 
@@ -30,18 +30,18 @@ class BottomBarNav extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 22),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 22),
           child: GNav(
-            gap: 10,
+            gap: 6,
             color: Colors.grey[600],
             activeColor: Colors.white,
             rippleColor: Colors.grey[800]!,
             hoverColor: Colors.grey[700]!,
-            iconSize: 20,
+            iconSize: 25,
             textStyle: const TextStyle(fontSize: 16, color: Colors.white),
             tabBackgroundColor: Colors.grey[900]!,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16.5),
-            duration: const Duration(milliseconds: 800),
+            duration: const Duration(milliseconds: 750),
             tabs: const [
               GButton(
                 icon: CupertinoIcons.house,
@@ -50,6 +50,10 @@ class BottomBarNav extends StatelessWidget {
               GButton(
                 icon: Icons.search,
                 text: 'Search',
+              ),
+              GButton(
+                icon: CupertinoIcons.shopping_cart,
+                text: 'Cart',
               ),
               GButton(
                 icon: CupertinoIcons.creditcard,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:grocery_app/widgets/navig.dart';
+import 'package:grocery_app/widgets/navigation.dart';
 import 'package:grocery_app/widgets/searchbar.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -19,6 +19,12 @@ class _SearchScreenState extends State<SearchScreen> {
     return await Navigator.push(context,
         MaterialPageRoute(builder: (context) => const NavigationWidget()));
   }
+
+  final List<String> _historyList = [
+    'Milk',
+    'Egg',
+    'Biscuits',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   .semiBold
                   .make(),
             ]).pSymmetric(v: 12),
-            ChipListWidget().p16(),
+            ChipListWidget(
+              historyList: _historyList,
+            ).p16(),
             InkWell(
               onTap: () {},
               child: Row(
@@ -78,19 +86,15 @@ class _SearchScreenState extends State<SearchScreen> {
 class ChipListWidget extends StatefulWidget {
   ChipListWidget({
     super.key,
+    required this.historyList,
   });
 
+  final List<String> historyList;
   @override
   State<ChipListWidget> createState() => _ChipListWidgetState();
 }
 
 class _ChipListWidgetState extends State<ChipListWidget> {
-  final List<String> _historyList = [
-    'Milk',
-    'Egg',
-    'Biscuits',
-  ];
-
   int currentIndex = 0;
 
   @override
@@ -99,7 +103,7 @@ class _ChipListWidgetState extends State<ChipListWidget> {
       style: const TextStyle(fontSize: 18),
       padding: const EdgeInsets.all(5),
       widgetSpacing: 5,
-      listOfChipNames: _historyList,
+      listOfChipNames: widget.historyList,
       activeBgColorList: [MyThemes.searchBarColor],
       inactiveBgColorList: const [MyThemes.searchBarColor],
       activeTextColorList: const [MyThemes.lightYellow],

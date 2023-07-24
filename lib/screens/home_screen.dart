@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../widgets/navig.dart';
+import '../widgets/navigation.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -63,9 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
         floatingActionButton: FloatingActionButton(
-            elevation: 3,
+            elevation: 2,
             onPressed: () {},
-            backgroundColor: MyThemes.cardButtonColor,
+            backgroundColor: Colors.blue[400],
             child: const Icon(
               CupertinoIcons.cart,
             )),

@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../widgets/navig.dart';
+import '../widgets/navigation.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

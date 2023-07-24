@@ -16,8 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return FlutterSplashScreen.fadeIn(
       backgroundColor: MyThemes.purple,
-      animationDuration: Duration(milliseconds: 3000),
-      duration: Duration(milliseconds: 4000),
+      animationDuration: const Duration(milliseconds: 3000),
+      duration: const Duration(milliseconds: 4000),
       onInit: () {
         debugPrint("On Init");
       },

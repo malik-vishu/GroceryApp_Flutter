@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/screens/cart_screen.dart';
 import 'package:grocery_app/screens/wallet_screen.dart';
 import 'package:grocery_app/widgets/bottom_nav_bar.dart';
 
@@ -18,6 +19,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   List<Widget> allpages = [
     HomeScreen(),
     SearchScreen(),
+    CartScreen(),
     WalletScreen(),
     ProfileScreen()
   ];

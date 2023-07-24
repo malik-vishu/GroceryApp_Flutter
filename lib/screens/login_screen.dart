@@ -4,10 +4,16 @@ import 'package:grocery_app/utils/all_routes.dart';
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -17,7 +23,10 @@ class LoginScreen extends StatelessWidget {
           child: Card(
             elevation: 2.5,
             color: Color.fromARGB(255, 108, 6, 203),
-            margin: EdgeInsets.fromLTRB(28, 280, 28, 260),
+            margin: (formKey.currentState != null &&
+                    !formKey.currentState!.validate())
+                ? EdgeInsets.fromLTRB(28, 280, 28, 200)
+                : EdgeInsets.fromLTRB(28, 280, 28, 260),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,6 +56,7 @@ class LoginScreen extends StatelessWidget {
                             leadingIcon: Icons.account_box_outlined,
                             hintText: "Enter Username",
                             labelText: "Username",
+                            obscureText: false,
                             formKey: formKey),
                         const SizedBox(
                           height: 10,
@@ -72,6 +82,8 @@ class LoginScreen extends StatelessWidget {
                                   formKey.currentState!.validate()) {
                                 print("Login Done");
                                 Navigator.pushNamed(context, AllRoutes.nav);
+                              } else {
+                                setState(() {});
                               }
                             },
                             child: "Login"
@@ -90,29 +102,34 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class FormField extends StatelessWidget {
+class FormField extends StatefulWidget {
   FormField({
     Key? key,
     required this.leadingIcon,
     required this.hintText,
     required this.labelText,
-    this.obscureText,
+    required this.obscureText,
     required GlobalKey<FormState> formKey,
   }) : super(key: key);
 
   final IconData leadingIcon;
   final String hintText;
   final String labelText;
-  final bool? obscureText;
+  bool obscureText;
 
+  @override
+  State<FormField> createState() => _FormFieldState();
+}
+
+class _FormFieldState extends State<FormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: const TextStyle(color: MyThemes.lightYellow),
       cursorColor: MyThemes.lightYellow,
-      obscureText: true,
+      obscureText: widget.obscureText,
       validator: (value) {
-        if (labelText == "Password") {
+        if (widget.labelText == "Password") {
           if (value != null && value.isEmpty) {
             return "Password cannot be empty";
           } else if (value != null && value.length < 6) {
@@ -134,10 +151,18 @@ class FormField extends StatelessWidget {
         errorStyle: const TextStyle(
             color: MyThemes.headingBlueColor,
             fontFamily: MyThemes.headingFonts),
-        icon: Icon(
-          leadingIcon,
+        icon: IconButton(
+          onPressed: () {
+            setState(() {
+              widget.obscureText = !widget.obscureText;
+            });
+          },
+          icon: (widget.obscureText && widget.labelText == "Password" ||
+                  !widget.obscureText && widget.labelText == "Username")
+              ? Icon(widget.leadingIcon)
+              : Icon(CupertinoIcons.eye_slash),
           color: MyThemes.lightYellow,
-          size: 40,
+          iconSize: 40,
         ),
         hintStyle: const TextStyle(
             color: MyThemes.lightYellow, fontFamily: MyThemes.headingFonts),
@@ -149,8 +174,8 @@ class FormField extends StatelessWidget {
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: MyThemes.lightYellow),
         ),
-        hintText: hintText,
-        labelText: labelText,
+        hintText: widget.hintText,
+        labelText: widget.labelText,
       ),
     );
   }

@@ -5,4 +5,5 @@ class AllRoutes {
   static String search = "/search";
   static String profile = "/profile";
   static String wallet = "/wallet";
+  static String splash = "/splash";
 }

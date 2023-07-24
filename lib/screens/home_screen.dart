@@ -29,7 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
           automaticallyImplyLeading: false,
           iconTheme:
               const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
-          title: "ShadowBox".text.xl4.color(MyThemes.headingBlueColor).make(),
+          title: "ShadowBox"
+              .text
+              .headline3(context)
+              .color(MyThemes.headingBlueColor)
+              .make(),
           backgroundColor: MyThemes.purple,
           elevation: 0.0,
         ),
@@ -61,14 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
             const RowOnHomeScreen(),
           ].vStack(),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        floatingActionButton: FloatingActionButton(
-            elevation: 2,
-            onPressed: () {},
-            backgroundColor: Colors.blue[400],
-            child: const Icon(
-              CupertinoIcons.cart,
-            )),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        // floatingActionButton: FloatingActionButton(
+        //     elevation: 2,
+        //     onPressed: () {},
+        //     backgroundColor: Colors.blue[400],
+        //     child: const Icon(
+        //       CupertinoIcons.cart,
+        //     )),
       ),
     );
   }

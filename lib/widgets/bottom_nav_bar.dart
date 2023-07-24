@@ -4,7 +4,10 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomBarNav extends StatelessWidget {
   BottomBarNav(
-      {Key? key, required this.selectedIndex, required this.allpages, required this.onTabChange})
+      {Key? key,
+      required this.selectedIndex,
+      required this.allpages,
+      required this.onTabChange})
       : super(key: key);
 
   int selectedIndex;

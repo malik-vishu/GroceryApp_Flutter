@@ -47,9 +47,10 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   velocity_x: ^4.1.0
   google_nav_bar: ^5.0.6
-  # badges: ^3.1.1
+
   chip_list: ^2.4.3+8
   another_flutter_splash_screen: ^1.1.4
+  auto_size_text: ^3.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

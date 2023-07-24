@@ -56,7 +56,7 @@ class CartScreen extends StatelessWidget {
                         style: const TextStyle(
                             color: MyThemes.headingBlueColor, fontSize: 40)),
                   ],
-                ).expand(),
+                ),
               ),
             ),
             OutlinedButton(

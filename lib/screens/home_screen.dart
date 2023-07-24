@@ -1,13 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:grocery_app/utils/home_screen_row_data.dart';
 
 import 'package:grocery_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import 'dart:core';
 import '../widgets/navigation.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,69 +21,78 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const NavigationWidget()));
   }
 
+  // int lenV =
+  //     CartModel.allHomeData.where((element) => element.category == "V").length;
+  // int lenF =
+  //     CartModel.allHomeData.where((element) => element.category == "F").length;
+  // int lenD =
+  //     CartModel.allHomeData.where((element) => element.category == "D").length;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: _onWillPop,
-      child: Scaffold(
-        backgroundColor: MyThemes.purple,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          iconTheme:
-              const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
-          title: "ShadowBox"
-              .text
-              .headline3(context)
-              .color(MyThemes.headingBlueColor)
-              .make(),
+        onWillPop: _onWillPop,
+        child: Scaffold(
           backgroundColor: MyThemes.purple,
-          elevation: 0.0,
-        ),
-        body: VxScrollVertical(
-          child: <Widget>[
-            "Fruits"
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            iconTheme:
+                const IconThemeData(color: MyThemes.headingBlueColor, size: 32),
+            title: "ShadowBox"
                 .text
-                .fontFamily(MyThemes.headingFonts)
-                .xl3
+                .headline3(context)
                 .color(MyThemes.headingBlueColor)
-                .make()
-                .py16(),
-            const RowOnHomeScreen(),
-            "Vegetables"
-                .text
-                .fontFamily(MyThemes.headingFonts)
-                .xl3
-                .color(MyThemes.headingBlueColor)
-                .make()
-                .py16(),
-            const RowOnHomeScreen(),
-            "Dairy"
-                .text
-                .fontFamily(MyThemes.headingFonts)
-                .xl3
-                .color(MyThemes.headingBlueColor)
-                .make()
-                .py16(),
-            const RowOnHomeScreen(),
-          ].vStack(),
-        ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        // floatingActionButton: FloatingActionButton(
-        //     elevation: 2,
-        //     onPressed: () {},
-        //     backgroundColor: Colors.blue[400],
-        //     child: const Icon(
-        //       CupertinoIcons.cart,
-        //     )),
-      ),
-    );
+                .make(),
+            backgroundColor: MyThemes.purple,
+            elevation: 0.0,
+          ),
+          body: VxScrollVertical(
+            // padding: EdgeInsets.zero,
+            child: <Widget>[
+              "Fruits"
+                  .text
+                  .fontFamily(MyThemes.headingFonts)
+                  .xl3
+                  .color(MyThemes.headingBlueColor)
+                  .make()
+                  .py16(),
+              const RowOnHomeScreen(
+                  // length: lenF,
+                  category: "F"),
+              "Vegetables"
+                  .text
+                  .fontFamily(MyThemes.headingFonts)
+                  .xl3
+                  .color(MyThemes.headingBlueColor)
+                  .make()
+                  .py16(),
+              const RowOnHomeScreen(
+                // length: lenV,
+                category: "V",
+              ),
+              "Dairy"
+                  .text
+                  .fontFamily(MyThemes.headingFonts)
+                  .xl3
+                  .color(MyThemes.headingBlueColor)
+                  .make()
+                  .py16(),
+              const RowOnHomeScreen(
+                // length: lenD,
+                category: "D",
+              ),
+            ].vStack(),
+          ),
+        ));
   }
 }
 
 class RowOnHomeScreen extends StatelessWidget {
   const RowOnHomeScreen({
     super.key,
+    required this.category,
   });
+  final String? category;
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +100,15 @@ class RowOnHomeScreen extends StatelessWidget {
       height: 220,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: CartModel.allHomeData.length,
         itemBuilder: (context, index) {
-          return const CardWidgetHomeScreen();
+          log("$index");
+          if (CartModel.allHomeData[index].category == category) {
+            log(CartModel.allHomeData[index].item);
+            log("$index");
+            return CardWidgetHomeScreen(item: CartModel.allHomeData[index]);
+          }
+          return Container();
         },
       ),
     );
@@ -99,9 +116,9 @@ class RowOnHomeScreen extends StatelessWidget {
 }
 
 class CardWidgetHomeScreen extends StatelessWidget {
-  const CardWidgetHomeScreen({
-    super.key,
-  });
+  const CardWidgetHomeScreen({super.key, required this.item});
+
+  final AllHomeRowsClass item;
 
   @override
   Widget build(BuildContext context) {
@@ -128,16 +145,16 @@ class CardWidgetHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Image(
+                  Image(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/Milk.png"),
+                    image: AssetImage(item.image),
                     width: 70,
                     height: 70,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  "Text".text.purple700.xl2.semiBold.make(),
+                  item.item.text.purple700.xl2.semiBold.make(),
                   const SizedBox(
                     height: 6,
                   ),
@@ -148,7 +165,7 @@ class CardWidgetHomeScreen extends StatelessWidget {
                         Icons.currency_rupee_rounded,
                         color: MyThemes.purple,
                       ),
-                      "10.00".text.xl2.bold.color(MyThemes.purple).make()
+                      item.cost.text.xl2.bold.color(MyThemes.purple).make()
                     ],
                   ),
                   Row(
@@ -253,17 +270,17 @@ class DrawerWidget extends StatelessWidget {
                     backgroundImage: AssetImage("assets/images/Mini1.png")),
               ),
             )),
-        ListTileWidget(title: "Home", leadingIcon: Icons.home_outlined),
-        ListTileWidget(
+        const ListTileWidget(title: "Home", leadingIcon: Icons.home_outlined),
+        const ListTileWidget(
             title: "johnxxx@gmail.com",
             leadingIcon: Icons.mail_outline_rounded),
-        ListTileWidget(
+        const ListTileWidget(
             title: "Wallet", leadingIcon: Icons.currency_rupee_sharp),
-        ListTileWidget(
+        const ListTileWidget(
           title: "Transaction History",
           leadingIcon: Icons.history,
         ),
-        ListTileWidget(
+        const ListTileWidget(
           title: "About",
           leadingIcon: Icons.person_pin_outlined,
         ),
@@ -273,7 +290,7 @@ class DrawerWidget extends StatelessWidget {
 }
 
 class ListTileWidget extends StatelessWidget {
-  ListTileWidget({
+  const ListTileWidget({
     super.key,
     required this.title,
     required this.leadingIcon,
